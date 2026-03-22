@@ -91,3 +91,59 @@ padding: 15px;
 background: #ddd;
 margin-top: 40px;
 }
+
+/*profile page stlyes */
+.profile-info {
+padding: 20px;
+}
+
+.profile-card {
+background: white;
+padding: 15px;
+border-radius: 8px;
+width: 300px;
+}
+
+.profile-orders {
+padding: 20px;
+}
+
+.profile-listings {
+padding: 20px;
+}
+
+/* login page styles */
+.login-section {
+padding: 20px;
+}
+
+.login-section p {
+margin-top: 15px;
+}
+
+.login-section a {
+color: #2b7cff;
+text-decoration: none;
+}
+
+.login-section a:hover {
+opacity: 0.7;
+}
+
+/* singup page styles*/
+.signup-section {
+padding: 20px;
+}
+
+.signup-section p {
+margin-top: 15px;
+}
+
+.signup-section a {
+color: #2b7cff;
+text-decoration: none;
+}
+
+.signup-section a:hover {
+opacity: 0.7;
+}
