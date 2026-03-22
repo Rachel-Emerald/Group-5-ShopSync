@@ -9,11 +9,11 @@
 // login page functions
 function tryLogin(){
     //add more logic later, redirect to home
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 }
 
 // signup page functions
 function tryCreateAccount(){
     //add more logic later, redirect to home
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 }
