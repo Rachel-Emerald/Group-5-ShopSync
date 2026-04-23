@@ -3,6 +3,7 @@
 <head>
     <title>ShopSync - Browse</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -13,7 +14,8 @@
         <a href="index.html">Home</a>
         <a href="browse.html">Browse</a>
         <a href="profile.html">Profile</a>
-        <a href="login.html">Login</a>
+        <span id="auth-link"></span>
+        <a href="cart.html">Cart</a>
     </nav>
 </header>
 
@@ -22,19 +24,19 @@
 <section class="items">
 
 <div class="item-card">
-    <img src="images/laptop.webp" width="200">
+    <img src="images/laptop.webp" width="200" onclick="addToCart('HP Chromebook', 400, 'images/laptop.webp')">
     <h3>New HP Chromebook 14-inch Laptop</h3>
     <p><strong>$400</strong></p>
 </div>
 
 <div class="item-card">
-    <img src="images/iphone.jpg" width="200">
+    <img src="images/iphone.jpg" width="200" onclick="addToCart('iPhone 14 Pro Max', 750, 'images/iphone.jpg')">
     <h3>Refurbished Iphone 14 Pro Max</h3>
     <p><strong>$750</strong></p>
 </div>
 
 <div class="item-card">
-    <img src="images/eiffel.webp" width="200">
+    <img src="images/eiffel.webp" width="200" onclick="addToCart('Eiffel Tower Lego Set', 630, 'images/eiffel.webp')">
     <h3>New Eiffel Tower Lego Set</h3>
     <p><strong>$630</strong></p>
 </div>

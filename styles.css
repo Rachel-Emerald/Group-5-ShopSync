@@ -92,7 +92,7 @@ background: #ddd;
 margin-top: 40px;
 }
 
-/*profile page stlyes */
+
 .profile-info {
 padding: 20px;
 }
@@ -112,7 +112,6 @@ padding: 20px;
 padding: 20px;
 }
 
-/* login page styles */
 .login-section {
 padding: 20px;
 }
@@ -130,7 +129,7 @@ text-decoration: none;
 opacity: 0.7;
 }
 
-/* singup page styles*/
+
 .signup-section {
 padding: 20px;
 }
@@ -146,4 +145,12 @@ text-decoration: none;
 
 .signup-section a:hover {
 opacity: 0.7;
+}
+#auth-link {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.item-card img {
+    cursor: pointer;
 }
