@@ -102,7 +102,10 @@ function updateCartCount() {
 
     if (!cartLink) return;
 
-    cartLink.textContent = "Cart (" + cart.length + ")";
+    let count = 0;
+    cart.forEach(item => count += item.quantity);
+
+    cartLink.textContent = "Cart (" + count + ")";
 }
 function logout() {
     localStorage.removeItem("user");
@@ -111,7 +114,13 @@ function logout() {
 function addToCart(name, price, image) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    cart.push({ name, price, image });
+    const existing = cart.find(item => item.name === name);
+
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ name, price, image, quantity: 1 });
+    }
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
@@ -137,16 +146,17 @@ function loadCart() {
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price;
+        total += item.price * item.quantity;
 
         const div = document.createElement("div");
         div.classList.add("item-card");
 
         div.innerHTML = `
             <img src="${item.image}" width="200">
-            <h3>${item.name}</h3>
-            <p><strong>$${item.price}</strong></p>
-            <button onclick="removeFromCart(${index})">Remove</button>
+            <h3>${item.name} × ${item.quantity}</h3>
+            <p><strong>$${item.price * item.quantity}</strong></p>
+            <button onclick="removeOne(${index})">Remove One</button>
+            <button onclick="removeFromCart(${index})">Remove All</button>
         `;
 
         cartContainer.appendChild(div);
@@ -157,6 +167,19 @@ function loadCart() {
 function removeFromCart(index) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
+}
+function removeOne(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+    } else {
+        cart.splice(index, 1);
+    }
+
     localStorage.setItem("cart", JSON.stringify(cart));
     loadCart();
     updateCartCount();
