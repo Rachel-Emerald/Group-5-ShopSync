@@ -93,6 +93,16 @@ function updateNavbar() {
     } else {
         authLink.innerHTML = `<a href="login.html">Login</a>`;
     }
+
+    updateCartCount();
+}
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartLink = document.getElementById("cart-link");
+
+    if (!cartLink) return;
+
+    cartLink.textContent = "Cart (" + cart.length + ")";
 }
 function logout() {
     localStorage.removeItem("user");
@@ -105,6 +115,8 @@ function addToCart(name, price, image) {
 
     localStorage.setItem("cart", JSON.stringify(cart));
 
+    updateCartCount();
+
     alert(name + " added to cart!");
 }
 function loadCart() {
@@ -116,9 +128,15 @@ function loadCart() {
 
     cartContainer.innerHTML = "";
 
+    if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty.</p>";
+        totalDisplay.textContent = "Total: $0";
+        return;
+    }
+
     let total = 0;
 
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         total += item.price;
 
         const div = document.createElement("div");
@@ -128,6 +146,7 @@ function loadCart() {
             <img src="${item.image}" width="200">
             <h3>${item.name}</h3>
             <p><strong>$${item.price}</strong></p>
+            <button onclick="removeFromCart(${index})">Remove</button>
         `;
 
         cartContainer.appendChild(div);
@@ -135,8 +154,14 @@ function loadCart() {
 
     totalDisplay.textContent = "Total: $" + total;
 }
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+    updateCartCount();
+}
 function clearCart() {
     localStorage.removeItem("cart");
     location.reload();
 }
-
