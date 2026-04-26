@@ -165,3 +165,15 @@ function clearCart() {
     localStorage.removeItem("cart");
     location.reload();
 }
+function checkout() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    localStorage.removeItem("cart");
+    alert("Order placed! Thanks for shopping with ShopSync.");
+    location.reload();
+}
